@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+	<meta name="color-scheme" content="light dark">
+</head>
+<body class="spline-sans-mono">
+	<div class="art"></div>
+	<div class="notes"></div>
+<style>
+.spline-sans-mono {
+  font-family: "Spline Sans Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.art {
+  white-space: pre-wrap;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  min-height: 100vh;
+}
+
+.notes {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin: 0;
+    text-align: left;
+    margin-bottom: -100000000px;  /* uwu */
+}
+
+.notes:last-child {
+    text-align: right;
+}
+</style>
+<script>
+    function base64ToBytes(base64) {
+        const binString = atob(base64);
+        return Uint8Array.from(binString, (m) => m.codePointAt(0));
+    }
+
+    function bytesToBase64(bytes) {
+        const binString = Array.from(bytes, (byte) =>
+            String.fromCodePoint(byte),
+        ).join("");
+        return btoa(binString);
+    }
+
+    const encodedNote = "PHA+aXQncyBqdXN0IG" + 
+                        "EgcmFtZW4gQVNDSUk8" + 
+                        "YnI+c3VyZWx5IG5vIH" + 
+                        "B1biBpbnRlbmRlZDwv" + 
+                        "cD48cD4tIDxpPlN5Ym" + 
+                        "VyaWFLPC9pPjwvcD4="
+    const _encodedArt = "4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4q" +
+                        "CA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCAICDioIDioIDioIDioIDioIDio7Di" + 
+                        "o7/ior/io7fio6bio4TioYDio7Dio7/io7fio4TioIDioIDioIAK4qCA4qCA4qCA4q" + 
+                        "CA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA" + 
+                        "4qCA4qCA4qCA4qCAIOKggOKggOKggOKggOKggOKggOKggOKjvOKjv+Kgj+KggOKjvO" + 
+                        "Kjv+Kjv+Kjv+Khv+Kgi+KgmeKjv+Kjt+KhhOKggArioIDioIDioIDioIDioIDioIDi" + 
+                        "oIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioI" + 
+                        "DioIAg4qCA4qCA4qCA4qCA4qCA4qCA4qO84qO/4qCP4qCA4qO44qO/4qO/4qO/4qCL" + 
+                        "4qCA4qKA4qO24qO/4qCf4qCD4qCACuKggOKggOKggOKggOKggOKggOKggOKggOKggO" + 
+                        "KggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggCDioIDi" + 
+                        "oIDioIDioIDioIDio7zio7/ioI/ioIDio7zio7/io7/ioJ/ioIHiooDio7Tio7/iob" + 
+                        "/ioIvioIDioIDioIAK4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA" + 
+                        "4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCAIOKggOKggOKggOKggO" + 
+                        "KjuOKjv+Khj+KggOKjvOKjv+Khv+KggeKigOKjtOKjv+Khv+Kgi+KggOKggOKggOKg" + 
+                        "gOKggArioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioI" + 
+                        "DioIDioIDioIDioIDioIDioIDioIDioIAg4qCA4qCA4qCA4qCA4qOw4qO/4qGf4qKA" + 
+                        "4qO+4qO/4qCL4qKA4qO04qO/4qG/4qCL4qCA4qCA4qCA4qCA4qCA4qCA4qCACuKggO" + 
+                        "KggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKg" + 
+                        "gOKggOKggOKggOKggOKggOKjgOKhgOKhgOKjsOKjv+Khn+KigOKjvOKhn+KigeKjoO" + 
+                        "KjvuKhv+Kgi+KggOKggOKggOKggOKggOKggOKggOKggOKggArioIDioIDioIDioIDi" + 
+                        "oIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDiooDio6Tio7bio7/io7" + 
+                        "fio7/io7/io7/io7/io7/io7/ioZ/io7jio7/ioK/iorDio7zio7/ioIvioIDioIDi" + 
+                        "oIDioIDioIDioIDioIDioIDioIDioIDioIAK4qCA4qCA4qCA4qCA4qCA4qCA4qCA4q" + 
+                        "CA4qCA4qCA4qCA4qCA4qCA4qOg4qO04qO+4qG/4qCf4qCL4qCJ4qKh4qOg4qOE4qOk" + 
+                        "4qOk4qO84qO/4qO94qGf4qCJ4qO+4qO/4qO/4qOl4qGA4qCA4qCA4qCA4qCA4qCA4q" + 
+                        "CA4qCA4qCA4qCA4qCA4qCACuKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKi" + 
+                        "gOKjtOKjvuKgv+Kgi+KggeKigOKjoOKjtOKhvuKgv+Kgu+Kim+KjieKjveKjv+Khv+" + 
+                        "Kgi+KjoOKjvuKjr+KjhuKgieKgu+Kjv+KjhuKggOKggOKggOKggOKggOKggOKggOKg" + 
+                        "gOKggOKggArioIDioIDioIDioIDioIDioIDioIDioIDioIDio7Tio7/iob/ioIHioI" + 
+                        "Dio6Tio77ioJ/ioIviooHio6Tio7bio7/io7/io7/io7/io7/io7fio77io7/io7fi" + 
+                        "o67io73io7fio4TioIjior/io6fioYDioIDioIDioIDioIDioIDioIDioIDioIAK4q" + 
+                        "CA4qCA4qCA4qCA4qCA4qCA4qCA4qKA4qO04qO/4qO/4qO04qO24qC+4qC/4qC/4qC3" + 
+                        "4qC/4qK/4qO/4qO/4qO/4qCb4qCL4qCJ4qKJ4qOA4qOA4qOA4qOA4qOA4qCJ4qCJ4q" + 
+                        "Cb4qC74qK+4qO/4qO34qGA4qCA4qCA4qCA4qCA4qCA4qCA4qCACuKggOKggOKggOKg" + 
+                        "gOKggOKjoOKjtuKjv+Kgv+Kgm+KgieKjgeKjsOKjtuKjpOKjpOKjtOKjguKjgOKjgO" + 
+                        "KgieKgmeKgu+KivuKjv+Khm+Kgm+Kgm+Kgm+Kgm+Kgm+Kgu+Kgt+KjpuKjhOKhgOKg" + 
+                        "iOKgu+Kjv+KjpuKhgOKggOKggOKggOKggOKggArioIDioIDioIDioqDio77io7/ioJ" + 
+                        "/iooHio6Dio7biob/ioJvioJvioInioInio4nio4nio4nio5vioZvioL/ioqbio4Ti" + 
+                        "oIDioJnior/io6bio7bio7bio7bio6Tio6TioYDioIDioJnior/io6bioYDioIjior" + 
+                        "vio7/ioYTioIDioIDioIDioIAK4qCA4qCA4qKg4qO/4qO/4qKD4qO04qG/4qCL4qKB" + 
+                        "4qOg4qO04qG+4qC/4qCf4qCb4qCb4qC74qC/4qK24qOE4qGA4qCJ4qC74qOm4qGA4q" + 
+                        "C54qOm4qCA4qCA4qCI4qCJ4qC74qO34qGE4qCA4qCZ4qK34qOE4qCA4qC54qO/4qGA" + 
+                        "4qCA4qCA4qCACuKjvuKjt+Kjv+Kjv+Kjp+KjvuKjr+KjpOKjtOKjv+Kjv+KjpeKjpO" + 
+                        "KjpOKjpOKjpOKjpOKjpOKjpOKjpOKjveKjv+KjpuKjpuKjvOKjv+KjpuKjv+Kjp+Kj" + 
+                        "pOKjpOKjpOKjpOKjrOKjv+KjpuKjgOKjgOKjv+KjpuKjgOKjv+Kjt+KjtuKjpOKhgA" + 
+                        "rio7/io7/ioY3ioInioInioInioInioInioInioInioInioInioInioInioInioIni" + 
+                        "oInioInioInioInioInioInioInioInioInioInioInioInioInioInioInioInioI" + 
+                        "nioInioInioInioInioInioInioInioInioInioJniorvio7/ioYcK4qK74qO/4qO3" + 
+                        "4qO/4qO24qO24qO24qO24qO24qO24qO24qO24qO24qO24qO24qO24qO24qO24qOm4q" + 
+                        "Ok4qOk4qOk4qOk4qOk4qOk4qOk4qOk4qOk4qOk4qOk4qOk4qO04qO24qO24qO24qO2" + 
+                        "4qO24qO24qO24qO24qO24qO24qO24qO+4qO/4qGH4qCACuKgiOKjv+Kjv+KggOKggO" + 
+                        "KggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKgieKgieKg" + 
+                        "ieKgieKgieKgieKgieKgieKgieKgieKgieKgieKggOKggOKggOKggOKggOKggCAgIC" + 
+                        "AgICAgICAg4qKA4qO/4qGP4qCACuKggOKiueKjv+Kjt+Khv+Kgv+Kgv+Kgv+Kgt+Kg" + 
+                        "t+Kgt+Kgv+Kgt+KgtuKgtuKgtuKgtuKgtuKgtuKgtuKgtuKgtuKgtuKgtuKgtuKgtu" + 
+                        "KgtuKgtuKgtuKgtuKgtuKgtuKgtuKgtuKgtuKgv+Kgv+Kgv+KgtuKgv+Kgv+Kgv+Kg" + 
+                        "tuKjvuKjvwrioIDioIjio7/io7fioIDioIDioIDioIDioIDioIDioIDioIDioIDioI" + 
+                        "DioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDi" + 
+                        "oIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIAgICAgICAg4qKg4qO/4qGf4q" + 
+                        "CA4qCACuKggOKggOKgmOKjv+Kjp+KggOKggOKggOKggOKggOKggOKggOKggOKggOKg" + 
+                        "gOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggOKggO" + 
+                        "KggOKggOKggOKggOKggOKggOKggOKggOKggCAgICAgICDioIDio77iob/ioIHioIDi" + 
+                        "oIAK4qCA4qCA4qCA4qCZ4qO/4qOm4qCA4qCA4qCA4qCA4qCA4qCAICAg4qCA4qCA4q" + 
+                        "O04qO/4qO34qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCAICAgICDio7Tio7/io6bi" + 
+                        "oIDioIDioIDioIDioIAgICAg4qO84qO/4qCD4qCA4qCA4qCACuKggOKggOKggOKggO" + 
+                        "KgmOKiv+Kjp+KhgCAgICAg4oCE4qCA4oCHICDior/io7/ioJ/ioIDioIDioLjio7/i" + 
+                        "o6bio4Tio6Tio77iob/ioIDioIDioIDior/iob/ioJ/ioIDioIDioIAgICAgIOKioO" + 
+                        "Kjv+Khj+KggOKggOKggOKggArioIDioIDioIDioIDioIDioIjioLvio7/io6Qg4qCA" + 
+                        "4qCA4qCA4qCA4qCA4qCA4qCAICDioIDioIDioIAg4qCA4qCI4qCZ4qCb4qCb4qCJ4q" + 
+                        "CA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCAICAg4qCA4qKg4qO+4qG/4qCB4qCA" + 
+                        "4qCA4qCA4qCA4qCACuKggOKggOKggOKggOKggOKggCDioIDioJjioLvio7fio6bioY" + 
+                        "DioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDi" + 
+                        "oIDioIDioIDioIDioIDioIAgICAgICDiooDio6Dio77io7/ioIvioIDioIDioIDioI" + 
+                        "DioIDioIDioIAK4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCAICDioIDioIjioLvior/i" + 
+                        "o7fio6bio4Tio4DioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioI" + 
+                        "DioIDioIAgICDiooDio6Dio7Tio7/iob/ioJvioIHioIDioIDioIDioIDioIDioIDi" + 
+                        "oIDioIAK4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCAICDioIDioInior" + 
+                        "vio7/ioZ/ioL/ioL/io7fio7bio7bio6Tio4Dio6Tio6Tio6Tio6Tio6Tio7bio7bi" + 
+                        "o7/ioL/ior/io7/ioY/ioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIAK4q" + 
+                        "CA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCAICDiorjio7/io4fi" + 
+                        "o4DioYDioIDioIDioZnioZvio5vio5vio5vio5vio4nio4nio4Dio4Dio4Dio4Dio7" + 
+                        "jio7/ioYfioIDioIDioIDioIDioIDioIDioIDioIDioIDioIDioIAK4qCA4qCA4qCA" + 
+                        "4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCA4qCAICDioIDioLjio7/io7/io7/io7/io7" + 
+                        "/iob/ioL/ioL/ioL/ioL/ioL/ioL/ioL/ioL/ioL/ioL/ioL/ioL/ioL/ioL/ioIc=";
+
+    const decoder = new TextDecoder()
+    const decodedNote = decoder.decode(base64ToBytes(encodedNote))
+    const decodedArt = decoder.decode(base64ToBytes(_encodedArt));
+    
+    document.querySelector(".art").innerText = decodedArt;
+    document.querySelector(".notes").innerHTML = decodedNote;
+</script>
+</body>
+</html>
